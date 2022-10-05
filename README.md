@@ -6,7 +6,7 @@
 
 <p align="center">
     <img src="https://img.shields.io/badge/php->=8.1-blue?colorB=%238892BF" alt="Code Coverage">  
-    <img src="https://img.shields.io/badge/release-v6.1-blue" alt="Code Coverage">   
+    <img src="https://img.shields.io/badge/release-v6.1.1-blue" alt="Code Coverage">   
     <img src="https://img.shields.io/badge/license-MIT-blue?style=flat-square&colorB=darkcyan" alt="Read License">
 </p>
 
