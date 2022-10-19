@@ -10,4 +10,9 @@ class Api
     public function __construct(protected string $entity)
     {
     }
+
+    public function getEntity(): string
+    {
+        return $this->entity;
+    }
 }
