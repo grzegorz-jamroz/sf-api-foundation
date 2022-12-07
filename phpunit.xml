@@ -16,6 +16,9 @@
         <include>
             <directory suffix=".php">src</directory>
         </include>
+        <exclude>
+            <file>src/Traits/ApiControllerTrait.php</file>
+        </exclude>
     </coverage>
     <testsuites>
         <testsuite name="unit">
