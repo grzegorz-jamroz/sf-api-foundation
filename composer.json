@@ -12,12 +12,21 @@
             "Ifrost\\ApiFoundation\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Ifrost\\ApiFoundation\\Tests\\": "tests/"
+        }
+    },
     "require-dev": {
         "phpstan/phpstan": "^1.8",
-        "friendsofphp/php-cs-fixer": "^3.11"
+        "friendsofphp/php-cs-fixer": "^3.11",
+        "phpunit/phpunit": "^9.5",
+        "grzegorz-jamroz/sf-api-bundle": "^6.1"
     },
     "require": {
         "php": ">=8.1",
-        "symfony/http-foundation": "^6.1"
+        "symfony/http-foundation": "^6.1",
+        "symfony/routing": "^6.1",
+        "grzegorz-jamroz/foundations": "^0.0.3"
     }
 }
