@@ -6,7 +6,7 @@ namespace Ifrost\ApiFoundation\Entity;
 
 use Ifrost\Foundations\ArrayConstructable;
 
-interface ApiEntityInterface extends ArrayConstructable, \JsonSerializable
+interface ApiEntityInterface extends ArrayConstructable, RequestDataConstructable, \JsonSerializable
 {
     /**
      * @return array<int, string>
