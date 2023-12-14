@@ -1,4 +1,9 @@
 # Changelog
+## Unreleased
+### Add
+- Support Symfony 7
+  - update dependencies
+
 ## [v6.2.0] - 2023.11.27
 ### Add
 - [RequestDataConstructable](src/Entity/RequestDataConstructable.php)

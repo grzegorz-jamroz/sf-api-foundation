@@ -25,8 +25,8 @@
     },
     "require": {
         "php": ">=8.1",
-        "symfony/http-foundation": "^6.1",
-        "symfony/routing": "^6.1",
+        "symfony/http-foundation": "^6.0|^7.0",
+        "symfony/routing": "^6.0|^7.0",
         "grzegorz-jamroz/foundations": "^0.0.3"
     }
 }
