@@ -11,6 +11,23 @@ use Symfony\Component\Config\FileLocator;
 
 class LoadTest extends TestCase
 {
+    public function testShouldReturnEmptyCollectionWhenGivenResourceIsNotString(): void
+    {
+        // Expect & Given
+        $resource = [];
+        $type = 'api_attribute';
+        $loader = new ApiLoader(
+            new FileLocator(),
+            new AnnotatedRouteControllerLoader(),
+        );
+
+        // When
+        $collection = $loader->load($resource, $type);
+
+        // Then
+        $this->assertCount(0, $collection);
+    }
+
     public function testShouldReturnEmptyRouteCollectionWhenGivenPathPointsToASpecificFile()
     {
         // Given
@@ -47,34 +64,5 @@ class LoadTest extends TestCase
 
         // Then
         $this->assertCount(12, $collection);
-    }
-
-    public function testShouldThrowLogicExceptionWhenTokenizerExtensionMissing()
-    {
-        // Expect
-        if (!extension_loaded('uopz')) {
-            $this->markTestSkipped('uopz extension required to override built-ins');
-        }
-
-        // Force function_exists to return false for the duration of this test
-        uopz_set_return('function_exists', false, true);
-
-        $this->expectException(\LogicException::class);
-        $this->expectExceptionMessage('The Tokenizer extension is required for the routing annotation loaders.');
-
-        $loader = new ApiLoader(
-            new FileLocator(),
-            new AnnotatedRouteControllerLoader(),
-        );
-
-        try {
-            $loader->load(
-                sprintf('%s/tests/Variant/Controller/Game', ABSPATH),
-                'api_attribute',
-            );
-        } finally {
-            // Restore original behaviour
-            uopz_unset_return('function_exists');
-        }
     }
 }

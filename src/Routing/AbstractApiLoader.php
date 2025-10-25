@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Ifrost\ApiFoundation\Routing;
 
 use FilesystemIterator;
+use Ifrost\ApiFoundation\Attribute\Api as ApiAttribute;
 use InvalidArgumentException;
 use RecursiveCallbackFilterIterator;
 use RecursiveDirectoryIterator;
@@ -21,12 +22,17 @@ abstract class AbstractApiLoader extends AbstractAnnotationFileLoader
      */
     public function load(mixed $path, ?string $type = null): ?RouteCollection
     {
+        if (is_string($path) === false) {
+            return new RouteCollection();
+        }
+
         if (!is_dir($dir = $this->locator->locate($path))) {
             return new RouteCollection();
         }
 
         $collection = new RouteCollection();
         $collection->addResource(new DirectoryResource($dir, '/\.php$/'));
+        /** @var SplFileInfo[] $files */
         $files = iterator_to_array(new RecursiveIteratorIterator(
             new RecursiveCallbackFilterIterator(
                 new RecursiveDirectoryIterator($dir, FilesystemIterator::SKIP_DOTS | FilesystemIterator::FOLLOW_SYMLINKS),
@@ -36,9 +42,6 @@ abstract class AbstractApiLoader extends AbstractAnnotationFileLoader
             ),
             RecursiveIteratorIterator::LEAVES_ONLY,
         ));
-        usort($files, function (SplFileInfo $a, SplFileInfo $b) {
-            return (string) $a > (string) $b ? 1 : -1;
-        });
 
         foreach ($files as $file) {
             if (!$file->isFile() || !str_ends_with($file->getFilename(), '.php')) {
@@ -51,6 +54,7 @@ abstract class AbstractApiLoader extends AbstractAnnotationFileLoader
                     continue;
                 }
 
+                /** @var class-string<ApiAttribute> $class */
                 $collection->addCollection($this->loader->load($class));
             }
         }

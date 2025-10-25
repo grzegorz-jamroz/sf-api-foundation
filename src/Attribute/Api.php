@@ -31,26 +31,24 @@ class Api
     }
 
     /**
-     * @return array<int, Action>
+     * @return array<Action>
      */
     public function getExcludedActions(): array
     {
-        return array_reduce(
-            $this->excludedActions,
-            function (array $carry, Action|string $excludedAction) {
-                if ($excludedAction instanceof Action) {
-                    $carry[] = $excludedAction;
+        $actions = [];
 
-                    return $carry;
-                }
+        foreach ($this->excludedActions as $excludedAction) {
+            if ($excludedAction instanceof Action) {
+                $actions[] = $excludedAction;
 
-                if (in_array($excludedAction, Action::values())) {
-                    $carry[] = Action::fromValue($excludedAction);
-                }
+                continue;
+            }
 
-                return $carry;
-            },
-            [],
-        );
+            if (in_array($excludedAction, Action::values(), true)) {
+                $actions[] = Action::fromValue($excludedAction);
+            }
+        }
+
+        return $actions;
     }
 }

@@ -18,6 +18,9 @@ use Symfony\Component\Routing\RouteCollection;
 
 abstract class AbstractAnnotatedRouteControllerLoader
 {
+    /**
+     * @param class-string<ApiAttribute> $className
+     */
     public function load(string $className): RouteCollection
     {
         if (!class_exists($className)) {
@@ -66,9 +69,14 @@ abstract class AbstractAnnotatedRouteControllerLoader
         return $collection;
     }
 
+    /**
+     * @return class-string<ApiAttribute>
+     */
     abstract protected function getAttributeClassName(): string;
 
     /**
+     * @param ReflectionClass<ApiAttribute> $class
+     *
      * @throws Exception
      */
     private function getAttribute(ReflectionClass $class): ApiAttribute
@@ -80,22 +88,25 @@ abstract class AbstractAnnotatedRouteControllerLoader
         return $attributes[0]->newInstance();
     }
 
+    /**
+     * @param ReflectionClass<ApiAttribute> $class
+     *
+     * @return array<string>
+     */
     private function getOverwrittenActions(ReflectionClass $class): array
     {
-        return array_reduce(
-            $class->getMethods(),
-            function (array $carry, ReflectionMethod $method) {
-                if ($this->isOverwrittenAction($method)) {
-                    $carry[] = $method->getName();
-                }
+        $overwrittenActions = [];
 
-                return $carry;
-            },
-            [],
-        );
+        foreach ($class->getMethods() as $method) {
+            if ($this->isOverwrittenAction($method)) {
+                $overwrittenActions[] = $method->getName();
+            }
+        }
+
+        return $overwrittenActions;
     }
 
-    private function isOverwrittenAction(ReflectionMethod $method)
+    private function isOverwrittenAction(ReflectionMethod $method): bool
     {
         return $method->isPublic()
             && in_array($method->getName(), Action::values())
@@ -103,7 +114,14 @@ abstract class AbstractAnnotatedRouteControllerLoader
     }
 
     /**
-     * @return array<string, array>
+     * @return array<string, array{
+     *     name: string,
+     *     route: array{
+     *         name: string,
+     *         path: string,
+     *         methods: array<int, string>
+     *     }
+     * }>
      */
     private function getActions(): array
     {
