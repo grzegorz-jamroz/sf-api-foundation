@@ -1,5 +1,5 @@
 # Changelog
-## Unreleased
+## [v7.0.0] - 2025.10.26
 ### Add
 - use Ifrost\ApiBundle\Traits\WithFindClassTrait in AbstractAnnotationFileLoader
 - Add docker support for development environment
@@ -30,6 +30,7 @@
 - Add ApiControllerTrait
 - Add routing features
 
-[v6.3.0]: https://github.com/grzegorz-jamroz/sf-api-foundation/releases/tag/6.3.0]
-[v6.2.0]: https://github.com/grzegorz-jamroz/sf-api-foundation/releases/tag/6.2.0]
-[v6.1.3]: https://github.com/grzegorz-jamroz/sf-api-foundation/releases/tag/6.1.3]
+[v7.0.0]: https://github.com/grzegorz-jamroz/sf-api-foundation/releases/tag/7.0.0
+[v6.3.0]: https://github.com/grzegorz-jamroz/sf-api-foundation/releases/tag/6.3.0
+[v6.2.0]: https://github.com/grzegorz-jamroz/sf-api-foundation/releases/tag/6.2.0
+[v6.1.3]: https://github.com/grzegorz-jamroz/sf-api-foundation/releases/tag/6.1.3

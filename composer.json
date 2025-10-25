@@ -1,7 +1,7 @@
 {
   "name": "grzegorz-jamroz/sf-api-foundation",
   "description": "Project contains fundamental interfaces for iFrost Symfony Api.",
-  "version": "6.3.0",
+  "version": "7.0.0",
   "authors": [
     {
       "name": "Grzegorz Jamróz",
