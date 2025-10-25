@@ -4,8 +4,13 @@ declare(strict_types=1);
 
 namespace Ifrost\ApiFoundation\Routing;
 
+use Exception;
 use Ifrost\ApiFoundation\Attribute\Api as ApiAttribute;
 use Ifrost\ApiFoundation\Enum\Action;
+use InvalidArgumentException;
+use ReflectionAttribute;
+use ReflectionClass;
+use ReflectionMethod;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route as RouteAttribute;
 use Symfony\Component\Routing\Route;
@@ -16,20 +21,20 @@ abstract class AbstractAnnotatedRouteControllerLoader
     public function load(string $className): RouteCollection
     {
         if (!class_exists($className)) {
-            throw new \InvalidArgumentException(sprintf('Class "%s" does not exist.', $className));
+            throw new InvalidArgumentException(sprintf('Class "%s" does not exist.', $className));
         }
 
-        $class = new \ReflectionClass($className);
+        $class = new ReflectionClass($className);
 
         if ($class->isAbstract()) {
-            throw new \InvalidArgumentException(sprintf('Annotations from class "%s" cannot be read as it is abstract.', $class->getName()));
+            throw new InvalidArgumentException(sprintf('Annotations from class "%s" cannot be read as it is abstract.', $class->getName()));
         }
 
         $collection = new RouteCollection();
 
         try {
             $attribute = $this->getAttribute($class);
-        } catch (\Exception) {
+        } catch (Exception) {
             return $collection;
         }
 
@@ -64,22 +69,22 @@ abstract class AbstractAnnotatedRouteControllerLoader
     abstract protected function getAttributeClassName(): string;
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
-    private function getAttribute(\ReflectionClass $class): ApiAttribute
+    private function getAttribute(ReflectionClass $class): ApiAttribute
     {
         $className = $this->getAttributeClassName();
-        $attributes = $class->getAttributes($className, \ReflectionAttribute::IS_INSTANCEOF);
-        $attributes[0] ?? throw new \Exception(sprintf('Controller "%s" has to declare "%s" attribute.', $class->getName(), $className));
+        $attributes = $class->getAttributes($className, ReflectionAttribute::IS_INSTANCEOF);
+        $attributes[0] ?? throw new Exception(sprintf('Controller "%s" has to declare "%s" attribute.', $class->getName(), $className));
 
         return $attributes[0]->newInstance();
     }
 
-    private function getOverwrittenActions(\ReflectionClass $class): array
+    private function getOverwrittenActions(ReflectionClass $class): array
     {
         return array_reduce(
             $class->getMethods(),
-            function (array $carry, \ReflectionMethod $method) {
+            function (array $carry, ReflectionMethod $method) {
                 if ($this->isOverwrittenAction($method)) {
                     $carry[] = $method->getName();
                 }
@@ -90,11 +95,11 @@ abstract class AbstractAnnotatedRouteControllerLoader
         );
     }
 
-    private function isOverwrittenAction(\ReflectionMethod $method)
+    private function isOverwrittenAction(ReflectionMethod $method)
     {
         return $method->isPublic()
             && in_array($method->getName(), Action::values())
-            && isset($method->getAttributes(RouteAttribute::class, \ReflectionAttribute::IS_INSTANCEOF)[0]);
+            && isset($method->getAttributes(RouteAttribute::class, ReflectionAttribute::IS_INSTANCEOF)[0]);
     }
 
     /**

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Ifrost\ApiFoundation\Enum;
 
+use InvalidArgumentException;
+
 enum Action: string
 {
     case FIND = 'find';
@@ -26,6 +28,6 @@ enum Action: string
             }
         }
 
-        throw new \InvalidArgumentException(sprintf('There is no %s with value %s', self::class, $value));
+        throw new InvalidArgumentException(sprintf('There is no %s with value %s', self::class, $value));
     }
 }

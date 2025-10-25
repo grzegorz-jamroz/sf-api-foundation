@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace Ifrost\ApiFoundation\Attribute;
 
+use Attribute;
 use Ifrost\ApiFoundation\Enum\Action;
 
-#[\Attribute(\Attribute::TARGET_CLASS)]
+#[Attribute(Attribute::TARGET_CLASS)]
 class Api
 {
     /**

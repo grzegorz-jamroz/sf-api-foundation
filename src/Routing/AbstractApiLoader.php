@@ -4,13 +4,20 @@ declare(strict_types=1);
 
 namespace Ifrost\ApiFoundation\Routing;
 
+use FilesystemIterator;
+use InvalidArgumentException;
+use RecursiveCallbackFilterIterator;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
+use ReflectionClass;
+use SplFileInfo;
 use Symfony\Component\Config\Resource\DirectoryResource;
 use Symfony\Component\Routing\RouteCollection;
 
 abstract class AbstractApiLoader extends AbstractAnnotationFileLoader
 {
     /**
-     * @throws \InvalidArgumentException When the directory does not exist or its routes cannot be parsed
+     * @throws InvalidArgumentException When the directory does not exist or its routes cannot be parsed
      */
     public function load(mixed $path, ?string $type = null): ?RouteCollection
     {
@@ -20,16 +27,16 @@ abstract class AbstractApiLoader extends AbstractAnnotationFileLoader
 
         $collection = new RouteCollection();
         $collection->addResource(new DirectoryResource($dir, '/\.php$/'));
-        $files = iterator_to_array(new \RecursiveIteratorIterator(
-            new \RecursiveCallbackFilterIterator(
-                new \RecursiveDirectoryIterator($dir, \FilesystemIterator::SKIP_DOTS | \FilesystemIterator::FOLLOW_SYMLINKS),
-                function (\SplFileInfo $current) {
+        $files = iterator_to_array(new RecursiveIteratorIterator(
+            new RecursiveCallbackFilterIterator(
+                new RecursiveDirectoryIterator($dir, FilesystemIterator::SKIP_DOTS | FilesystemIterator::FOLLOW_SYMLINKS),
+                function (SplFileInfo $current) {
                     return !str_starts_with($current->getBasename(), '.');
                 },
             ),
-            \RecursiveIteratorIterator::LEAVES_ONLY,
+            RecursiveIteratorIterator::LEAVES_ONLY,
         ));
-        usort($files, function (\SplFileInfo $a, \SplFileInfo $b) {
+        usort($files, function (SplFileInfo $a, SplFileInfo $b) {
             return (string) $a > (string) $b ? 1 : -1;
         });
 
@@ -39,7 +46,7 @@ abstract class AbstractApiLoader extends AbstractAnnotationFileLoader
             }
 
             if ($class = $this->findClass($file)) {
-                $refl = new \ReflectionClass($class);
+                $refl = new ReflectionClass($class);
                 if ($refl->isAbstract()) {
                     continue;
                 }
