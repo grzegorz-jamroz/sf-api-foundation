@@ -6,6 +6,7 @@ namespace Ifrost\ApiFoundation\Routing;
 
 use FilesystemIterator;
 use Ifrost\ApiBundle\Controller\ApiController;
+use Ifrost\ApiBundle\Exception\CouldNotReadFileException;
 use InvalidArgumentException;
 use RecursiveCallbackFilterIterator;
 use RecursiveDirectoryIterator;
@@ -48,16 +49,20 @@ abstract class AbstractApiLoader extends AbstractAnnotationFileLoader
                 continue;
             }
 
-            if ($class = $this->findClass($file)) {
-                $refl = new ReflectionClass($class);
-
-                if ($refl->isAbstract()) {
-                    continue;
-                }
-
-                /* @var class-string<ApiController> $class */
-                $collection->addCollection($this->loader->load($class));
+            try {
+                $class = $this->findClass($file);
+                // @phpstan-ignore-next-line
+            } catch (CouldNotReadFileException) {
             }
+
+            if (
+                new ReflectionClass($class)->isAbstract()
+                || !is_subclass_of($class, ApiController::class)
+            ) {
+                continue;
+            }
+
+            $collection->addCollection($this->loader->load($class));
         }
 
         return $collection;

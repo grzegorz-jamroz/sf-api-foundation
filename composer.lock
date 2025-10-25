@@ -991,16 +991,16 @@
         },
         {
             "name": "grzegorz-jamroz/sf-api-bundle",
-            "version": "7.0.0",
+            "version": "7.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/grzegorz-jamroz/sf-api-bundle.git",
-                "reference": "424a3a0699c251484d3a07d39c4502e1b47b601e"
+                "reference": "6a1bd2353fadb8b0cbfb5e30211b730a8321ba7c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/grzegorz-jamroz/sf-api-bundle/zipball/424a3a0699c251484d3a07d39c4502e1b47b601e",
-                "reference": "424a3a0699c251484d3a07d39c4502e1b47b601e",
+                "url": "https://api.github.com/repos/grzegorz-jamroz/sf-api-bundle/zipball/6a1bd2353fadb8b0cbfb5e30211b730a8321ba7c",
+                "reference": "6a1bd2353fadb8b0cbfb5e30211b730a8321ba7c",
                 "shasum": ""
             },
             "require": {
@@ -1032,9 +1032,9 @@
             "description": "Bundle provides basic features for Symfony Api.",
             "support": {
                 "issues": "https://github.com/grzegorz-jamroz/sf-api-bundle/issues",
-                "source": "https://github.com/grzegorz-jamroz/sf-api-bundle/tree/v7.0.0"
+                "source": "https://github.com/grzegorz-jamroz/sf-api-bundle/tree/v7.0.1"
             },
-            "time": "2025-10-25T19:06:05+00:00"
+            "time": "2025-10-25T23:30:04+00:00"
         },
         {
             "name": "myclabs/deep-copy",

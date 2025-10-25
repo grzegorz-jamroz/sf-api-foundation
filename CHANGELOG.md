@@ -6,7 +6,7 @@
 
 ### Change
 - Rename `Ifrost\ApiFoundation\Attribute\Api` attribute to `Ifrost\ApiFoundation\Attribute\ApiController` for better clarity
-- update sf-api-bundle to [v7.0.0](https://github.com/grzegorz-jamroz/sf-api-bundle/releases/tag/v7.0.0))
+- update sf-api-bundle to [v7.0.1](https://github.com/grzegorz-jamroz/sf-api-bundle/releases/tag/v7.0.1))
 
 # Changelog
 ## [v6.3.0] - 2023.12.14
