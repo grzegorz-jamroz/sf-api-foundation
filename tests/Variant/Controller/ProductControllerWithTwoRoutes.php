@@ -16,7 +16,8 @@ use Ifrost\ApiFoundation\Tests\Variant\Entity\Product;
         Action::UPDATE,
         Action::MODIFY,
         'delete',
-    ])
+    ],
+)
 ]
 class ProductControllerWithTwoRoutes extends ApiControllerVariant
 {

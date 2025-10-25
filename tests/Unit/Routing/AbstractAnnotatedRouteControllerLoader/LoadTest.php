@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Ifrost\ApiFoundation\Tests\Unit\Routing\AbstractAnnotatedRouteControllerLoader;
 
-use PHPUnit\Framework\TestCase;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Ifrost\ApiFoundation\Tests\Variant\Controller\ApiControllerVariant;
 use Ifrost\ApiFoundation\Tests\Variant\Controller\InvalidController;
 use Ifrost\ApiFoundation\Tests\Variant\Controller\ProductController;
 use Ifrost\ApiFoundation\Tests\Variant\Controller\ProductControllerWithOverwrittenAction;
 use Ifrost\ApiFoundation\Tests\Variant\Controller\ProductControllerWithTwoRoutes;
-use Ifrost\ApiFoundation\Tests\Variant\Controller\ApiControllerVariant;
 use Ifrost\ApiFoundation\Tests\Variant\Routing\AnnotatedRouteControllerLoader;
+use PHPUnit\Framework\TestCase;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class LoadTest extends TestCase
 {
@@ -19,10 +19,10 @@ class LoadTest extends TestCase
     {
         // Given
         $loader = new AnnotatedRouteControllerLoader();
-        
+
         // When
         $collection = $loader->load(ProductController::class);
-        
+
         // Then
         $this->assertCount(6, $collection);
     }

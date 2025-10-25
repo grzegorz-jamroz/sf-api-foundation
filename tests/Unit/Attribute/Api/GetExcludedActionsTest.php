@@ -21,7 +21,7 @@ class GetExcludedActionsTest extends TestCase
                 Action::FIND,
                 'findOne',
                 'not_exist_action',
-            ]
+            ],
         );
 
         // When & Then
@@ -30,7 +30,7 @@ class GetExcludedActionsTest extends TestCase
                 Action::FIND,
                 Action::FIND_ONE,
             ],
-            $attribute->getExcludedActions()
+            $attribute->getExcludedActions(),
         );
     }
 }

@@ -12,7 +12,7 @@ abstract class AbstractApiLoader extends AbstractAnnotationFileLoader
     /**
      * @throws \InvalidArgumentException When the directory does not exist or its routes cannot be parsed
      */
-    public function load(mixed $path, string $type = null): ?RouteCollection
+    public function load(mixed $path, ?string $type = null): ?RouteCollection
     {
         if (!is_dir($dir = $this->locator->locate($path))) {
             return new RouteCollection();
@@ -25,9 +25,9 @@ abstract class AbstractApiLoader extends AbstractAnnotationFileLoader
                 new \RecursiveDirectoryIterator($dir, \FilesystemIterator::SKIP_DOTS | \FilesystemIterator::FOLLOW_SYMLINKS),
                 function (\SplFileInfo $current) {
                     return !str_starts_with($current->getBasename(), '.');
-                }
+                },
             ),
-            \RecursiveIteratorIterator::LEAVES_ONLY
+            \RecursiveIteratorIterator::LEAVES_ONLY,
         ));
         usort($files, function (\SplFileInfo $a, \SplFileInfo $b) {
             return (string) $a > (string) $b ? 1 : -1;
@@ -51,7 +51,7 @@ abstract class AbstractApiLoader extends AbstractAnnotationFileLoader
         return $collection;
     }
 
-    public function supports(mixed $resource, string $type = null): bool
+    public function supports(mixed $resource, ?string $type = null): bool
     {
         return $type === $this->getType();
     }

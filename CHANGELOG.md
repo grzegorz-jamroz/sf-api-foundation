@@ -1,4 +1,13 @@
 # Changelog
+## Unreleased
+### Add
+- use Ifrost\ApiBundle\Traits\WithFindClassTrait in AbstractAnnotationFileLoader
+- Add docker support for development environment
+
+### Change
+- update sf-api-bundle to [v7.0.0](https://github.com/grzegorz-jamroz/sf-api-bundle/releases/tag/v7.0.0))
+
+# Changelog
 ## [v6.3.0] - 2023.12.14
 ### Add
 - Support Symfony 7

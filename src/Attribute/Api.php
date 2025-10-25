@@ -49,7 +49,7 @@ class Api
 
                 return $carry;
             },
-            []
+            [],
         );
     }
 }

@@ -86,11 +86,12 @@ abstract class AbstractAnnotatedRouteControllerLoader
 
                 return $carry;
             },
-            []
+            [],
         );
     }
 
-    private function isOverwrittenAction(\ReflectionMethod $method) {
+    private function isOverwrittenAction(\ReflectionMethod $method)
+    {
         return $method->isPublic()
             && in_array($method->getName(), Action::values())
             && isset($method->getAttributes(RouteAttribute::class, \ReflectionAttribute::IS_INSTANCEOF)[0]);
