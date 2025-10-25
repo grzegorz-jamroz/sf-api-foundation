@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Ifrost\ApiFoundation\Routing;
 
 use FilesystemIterator;
-use Ifrost\ApiFoundation\Attribute\Api as ApiAttribute;
+use Ifrost\ApiBundle\Controller\ApiController;
 use InvalidArgumentException;
 use RecursiveCallbackFilterIterator;
 use RecursiveDirectoryIterator;
@@ -20,13 +20,13 @@ abstract class AbstractApiLoader extends AbstractAnnotationFileLoader
     /**
      * @throws InvalidArgumentException When the directory does not exist or its routes cannot be parsed
      */
-    public function load(mixed $path, ?string $type = null): ?RouteCollection
+    public function load(mixed $resource, ?string $type = null): ?RouteCollection
     {
-        if (is_string($path) === false) {
+        if (is_string($resource) === false) {
             return new RouteCollection();
         }
 
-        if (!is_dir($dir = $this->locator->locate($path))) {
+        if (!is_dir($dir = $this->locator->locate($resource))) {
             return new RouteCollection();
         }
 
@@ -50,11 +50,12 @@ abstract class AbstractApiLoader extends AbstractAnnotationFileLoader
 
             if ($class = $this->findClass($file)) {
                 $refl = new ReflectionClass($class);
+
                 if ($refl->isAbstract()) {
                     continue;
                 }
 
-                /** @var class-string<ApiAttribute> $class */
+                /* @var class-string<ApiController> $class */
                 $collection->addCollection($this->loader->load($class));
             }
         }

@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Ifrost\ApiFoundation\Tests\Variant\Controller;
 
-use Ifrost\ApiFoundation\Attribute\Api;
+use Ifrost\ApiFoundation\Attribute\ApiController;
 use Ifrost\ApiFoundation\Enum\Action;
 use Ifrost\ApiFoundation\Tests\Variant\Entity\Product;
 
-#[Api(
+#[ApiController(
     entity: Product::class,
     path: 'products',
     excludedActions: [

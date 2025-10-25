@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Enum\Action;
+namespace Ifrost\ApiFoundation\Tests\Unit\Enum\Action;
 
 use Ifrost\ApiFoundation\Enum\Action;
 use PHPUnit\Framework\TestCase;

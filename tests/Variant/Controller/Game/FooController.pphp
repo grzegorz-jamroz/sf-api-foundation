@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace Ifrost\ApiFoundation\Tests\Variant\Controller\Game;
 
-use Ifrost\ApiFoundation\Attribute\Api;
+use Ifrost\ApiFoundation\Attribute\ApiController;
 use Ifrost\ApiBundle\Controller\ApiController;
 use Ifrost\ApiFoundation\Tests\Variant\Entity\Foo;
 
-#[Api(entity: Foo::class, path: 'foo')]
+#[ApiController(entity: Foo::class, path: 'foo')]
 class FooController extends ApiController
 {
 }

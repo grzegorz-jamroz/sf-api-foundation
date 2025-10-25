@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace Ifrost\ApiFoundation\Routing;
 
 use Exception;
-use Ifrost\ApiFoundation\Attribute\Api as ApiAttribute;
+use Ifrost\ApiBundle\Controller\ApiController;
+use Ifrost\ApiFoundation\Attribute\ApiController as ApiControllerAttribute;
 use Ifrost\ApiFoundation\Enum\Action;
 use InvalidArgumentException;
 use ReflectionAttribute;
@@ -19,7 +20,7 @@ use Symfony\Component\Routing\RouteCollection;
 abstract class AbstractAnnotatedRouteControllerLoader
 {
     /**
-     * @param class-string<ApiAttribute> $className
+     * @param class-string<ApiController> $className
      */
     public function load(string $className): RouteCollection
     {
@@ -70,16 +71,16 @@ abstract class AbstractAnnotatedRouteControllerLoader
     }
 
     /**
-     * @return class-string<ApiAttribute>
+     * @return class-string<ApiControllerAttribute>
      */
     abstract protected function getAttributeClassName(): string;
 
     /**
-     * @param ReflectionClass<ApiAttribute> $class
+     * @param ReflectionClass<ApiController> $class
      *
      * @throws Exception
      */
-    private function getAttribute(ReflectionClass $class): ApiAttribute
+    private function getAttribute(ReflectionClass $class): ApiControllerAttribute
     {
         $className = $this->getAttributeClassName();
         $attributes = $class->getAttributes($className, ReflectionAttribute::IS_INSTANCEOF);
@@ -89,7 +90,7 @@ abstract class AbstractAnnotatedRouteControllerLoader
     }
 
     /**
-     * @param ReflectionClass<ApiAttribute> $class
+     * @param ReflectionClass<ApiController> $class
      *
      * @return array<string>
      */

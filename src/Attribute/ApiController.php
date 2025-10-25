@@ -8,7 +8,7 @@ use Attribute;
 use Ifrost\ApiFoundation\Enum\Action;
 
 #[Attribute(Attribute::TARGET_CLASS)]
-class Api
+class ApiController
 {
     /**
      * @param array<int, Action|string> $excludedActions

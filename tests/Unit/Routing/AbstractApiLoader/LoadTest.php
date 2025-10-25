@@ -15,7 +15,7 @@ class LoadTest extends TestCase
     {
         // Expect & Given
         $resource = [];
-        $type = 'api_attribute';
+        $type = 'api_controller_attribute';
         $loader = new ApiLoader(
             new FileLocator(),
             new AnnotatedRouteControllerLoader(),
@@ -40,7 +40,7 @@ class LoadTest extends TestCase
         // When
         $collection = $loader->load(
             $path,
-            'api_attribute',
+            'api_controller_attribute',
         );
 
         // Then
@@ -59,7 +59,7 @@ class LoadTest extends TestCase
         // When
         $collection = $loader->load(
             $path,
-            'api_attribute',
+            'api_controller_attribute',
         );
 
         // Then

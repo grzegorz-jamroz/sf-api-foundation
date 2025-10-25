@@ -10,6 +10,6 @@ class ApiLoader extends AbstractApiLoader
 {
     protected function getType(): string
     {
-        return 'api_attribute';
+        return 'api_controller_attribute';
     }
 }

@@ -14,7 +14,7 @@ class SupportsTest extends TestCase
     public function testShouldReturnTrueWhenSupportedTypeGiven()
     {
         // Given
-        $type = 'api_attribute';
+        $type = 'api_controller_attribute';
         $loader = new ApiLoader(
             new FileLocator(),
             new AnnotatedRouteControllerLoader(),

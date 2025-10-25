@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Attribute\Api;
+namespace Ifrost\ApiFoundation\Tests\Unit\Attribute\ApiController;
 
-use Ifrost\ApiFoundation\Attribute\Api;
+use Ifrost\ApiFoundation\Attribute\ApiController;
 use Ifrost\ApiFoundation\Enum\Action;
 use Ifrost\ApiFoundation\Tests\Variant\Entity\Product;
 use PHPUnit\Framework\TestCase;
@@ -14,7 +14,7 @@ class GetExcludedActionsTest extends TestCase
     public function testShouldReturnExcludedActionsAsArray()
     {
         // Given
-        $attribute = new Api(
+        $attribute = new ApiController(
             Product::class,
             'products',
             [

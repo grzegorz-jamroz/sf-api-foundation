@@ -5,6 +5,7 @@
 - Add docker support for development environment
 
 ### Change
+- Rename `Ifrost\ApiFoundation\Attribute\Api` attribute to `Ifrost\ApiFoundation\Attribute\ApiController` for better clarity
 - update sf-api-bundle to [v7.0.0](https://github.com/grzegorz-jamroz/sf-api-bundle/releases/tag/v7.0.0))
 
 # Changelog
