@@ -1,4 +1,8 @@
 # Changelog
+## Unreleased
+### Delete
+- remove composer.lock
+
 ## [v7.0.0] - 2025.10.26
 ### Add
 - use Ifrost\ApiBundle\Traits\WithFindClassTrait in AbstractAnnotationFileLoader
