@@ -1,5 +1,5 @@
 # Changelog
-## Unreleased
+## [v7.0.1] - 2025.10.26
 ### Delete
 - remove composer.lock
 
@@ -34,6 +34,7 @@
 - Add ApiControllerTrait
 - Add routing features
 
+[v7.0.1]: https://github.com/grzegorz-jamroz/sf-api-foundation/releases/tag/7.0.1
 [v7.0.0]: https://github.com/grzegorz-jamroz/sf-api-foundation/releases/tag/7.0.0
 [v6.3.0]: https://github.com/grzegorz-jamroz/sf-api-foundation/releases/tag/6.3.0
 [v6.2.0]: https://github.com/grzegorz-jamroz/sf-api-foundation/releases/tag/6.2.0
