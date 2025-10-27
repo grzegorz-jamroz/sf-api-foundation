@@ -33,7 +33,7 @@ class Monster implements ApiEntityInterface
         return array_keys(self::createFromArray([])->jsonSerialize());
     }
 
-    public static function createFromArray(array $data): static|self
+    public static function createFromArray(array $data): self
     {
         return new self(
             Transform::toString($data['uuid'] ?? ''),
@@ -50,5 +50,13 @@ class Monster implements ApiEntityInterface
             'uuid' => $this->uuid,
             'name' => $this->name,
         ];
+    }
+
+    public static function createFromRequest(array $data): self
+    {
+        return new self(
+            Transform::toString($data['uuid'] ?? ''),
+            Transform::toString($data['name'] ?? ''),
+        );
     }
 }

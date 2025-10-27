@@ -12,4 +12,9 @@ interface ApiEntityInterface extends ArrayConstructable, RequestDataConstructabl
      * @return array<int, string>
      */
     public static function getFields(): array;
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function jsonSerialize(): array;
 }

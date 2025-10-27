@@ -43,7 +43,7 @@ class Product implements ApiEntityInterface
         return array_keys(self::createFromArray([])->jsonSerialize());
     }
 
-    public static function createFromArray(array $data): static|self
+    public static function createFromArray(array $data): self
     {
         return new self(
             Transform::toString($data['uuid'] ?? ''),

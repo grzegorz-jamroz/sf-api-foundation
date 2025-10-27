@@ -9,5 +9,5 @@ interface RequestDataConstructable
     /**
      * @param array<string, mixed> $data
      */
-    public static function createFromRequest(array $data): static|self;
+    public static function createFromRequest(array $data): self;
 }
