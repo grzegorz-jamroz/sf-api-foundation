@@ -22,12 +22,12 @@
     "phpunit/phpunit": "^12.4",
     "friendsofphp/php-cs-fixer": "^3.89",
     "phpstan/phpstan": "^2.1",
-    "grzegorz-jamroz/sf-api-bundle": "^7.0"
+    "grzegorz-jamroz/sf-api-bundle": "^8.0"
   },
   "require": {
     "php": ">=8.4",
-    "symfony/http-foundation": "^6.0|^7.0",
-    "symfony/routing": "^6.0|^7.0",
+    "symfony/http-foundation": "^6.0|^7.0|^8.0",
+    "symfony/routing": "^6.0|^7.0|^8.0",
     "grzegorz-jamroz/foundations": "^1.0"
   }
 }

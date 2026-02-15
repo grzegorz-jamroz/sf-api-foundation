@@ -7,7 +7,7 @@ namespace Ifrost\ApiFoundation\Tests\Variant\Controller;
 use Ifrost\ApiFoundation\Attribute\ApiController;
 use Ifrost\ApiFoundation\Tests\Variant\Entity\Product;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 #[ApiController(entity: Product::class, path: 'products')]
 class ProductControllerWithOverwrittenAction extends ApiControllerVariant

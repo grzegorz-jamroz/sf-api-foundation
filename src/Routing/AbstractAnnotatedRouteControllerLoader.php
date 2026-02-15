@@ -13,7 +13,7 @@ use ReflectionAttribute;
 use ReflectionClass;
 use ReflectionMethod;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\Annotation\Route as RouteAttribute;
+use Symfony\Component\Routing\Attribute\Route as RouteAttribute;
 use Symfony\Component\Routing\Route;
 use Symfony\Component\Routing\RouteCollection;
 

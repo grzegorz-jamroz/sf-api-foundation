@@ -1,4 +1,8 @@
 # Changelog
+## Unreleased
+### Add
+- Symfony 8 support
+
 ## [v7.1.0] - 2025.10.27
 ### Add
 - add coverage script and update README for coverage report instructions

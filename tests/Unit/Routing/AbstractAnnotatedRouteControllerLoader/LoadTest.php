@@ -39,7 +39,7 @@ class LoadTest extends TestCase
         $this->assertCount(2, $collection);
     }
 
-    public function testShouldReturnRouteCollectionWithFiveRoutesWhereWhenOneActionIsOverwritten()
+    public function testShouldReturnRouteCollectionWithFiveRoutesWhenOneActionIsOverwritten()
     {
         // Given
         $loader = new AnnotatedRouteControllerLoader();
